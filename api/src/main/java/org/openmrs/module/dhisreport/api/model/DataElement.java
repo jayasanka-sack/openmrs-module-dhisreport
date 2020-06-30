@@ -20,10 +20,11 @@
 package org.openmrs.module.dhisreport.api.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.xml.bind.annotation.*;
 
 /**
- * 
+ *
  * @author bobj
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -43,10 +44,13 @@ public class DataElement implements Serializable, Identifiable {
 	@XmlAttribute(required = true)
 	protected String name;
 
-	@Override
-	public String getUid() {
-		return uid;
-	}
+    protected List<DataSet> dataSets;
+
+    @Override
+    public String getUid()
+    {
+        return uid;
+    }
 
 	@Override
 	public void setUid(String uid) {
@@ -71,51 +75,65 @@ public class DataElement implements Serializable, Identifiable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
+    public String getName()
+    {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName( String name )
+    {
+        this.name = name;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final DataElement other = (DataElement) obj;
-		if ((this.code == null) ? (other.code != null) : !this.code
-				.equals(other.code)) {
-			return false;
-		}
-		if ((this.uid == null) ? (other.uid != null) : !this.uid
-				.equals(other.uid)) {
-			return false;
-		}
-		if ((this.name == null) ? (other.name != null) : !this.name
-				.equals(other.name)) {
-			return false;
-		}
-		return true;
-	}
+    public List<DataSet> getDataSets() {
+        return dataSets;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 3;
-		hash = 89 * hash + (this.code != null ? this.code.hashCode() : 0);
-		hash = 89 * hash + (this.uid != null ? this.uid.hashCode() : 0);
-		hash = 89 * hash + (this.name != null ? this.name.hashCode() : 0);
-		return hash;
-	}
+    public void setDataSets(List<DataSet> dataSets) {
+        this.dataSets = dataSets;
+    }
 
-	@Override
-	public String toString() {
-		return "DE: " + this.getId() + " : " + this.getCode() + " : "
-				+ this.getUid() + " : " + this.getName();
-	}
+    @Override
+    public boolean equals( Object obj )
+    {
+        if ( obj == null )
+        {
+            return false;
+        }
+        if ( getClass() != obj.getClass() )
+        {
+            return false;
+        }
+        final DataElement other = (DataElement) obj;
+        if ( (this.code == null) ? (other.code != null) : !this.code.equals( other.code ) )
+        {
+            return false;
+        }
+        if ( (this.uid == null) ? (other.uid != null) : !this.uid.equals( other.uid ) )
+        {
+            return false;
+        }
+        if ( (this.name == null) ? (other.name != null) : !this.name.equals( other.name ) )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 3;
+        hash = 89 * hash + (this.code != null ? this.code.hashCode() : 0);
+        hash = 89 * hash + (this.uid != null ? this.uid.hashCode() : 0);
+        hash = 89 * hash + (this.name != null ? this.name.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "DE: " + this.getId() + " : " + this.getCode() + " : " + this.getUid() + " : " + this.getName();
+    }
 
 }
