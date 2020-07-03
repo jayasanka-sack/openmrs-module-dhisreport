@@ -1,93 +1,80 @@
 package org.openmrs.module.dhisreport.api.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class DataSet
-    implements Serializable, Identifiable
-{
+public class DataSet implements Serializable, Identifiable {
 
-    private Integer id;
+	private Integer id;
 
-    private String uid;
+	private String uid;
 
-    private String code;
+	private String code;
 
-    private String name;
+	private String name;
 
-    private String periodType;
+	private String periodType;
 
-    private String reportUuid;
+	private String reportUuid;
 
-    private List<DataElement> dataElements;
+	private Set<DataElement> dataElements = new HashSet<DataElement>(0);
 
-    @Override
-    public Integer getId()
-    {
-        return id;
-    }
+	@Override
+	public Integer getId() {
+		return id;
+	}
 
-    @Override
-    public void setId( Integer id )
-    {
-        this.id = id;
-    }
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getUid()
-    {
-        return uid;
-    }
+	public String getUid() {
+		return uid;
+	}
 
-    public void setUid( String uid )
-    {
-        this.uid = uid;
-    }
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 
-    public String getCode()
-    {
-        return code;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public void setCode( String code )
-    {
-        this.code = code;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public String getName()
-    {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName( String name )
-    {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getPeriodType()
-    {
-        return periodType;
-    }
+	public String getPeriodType() {
+		return periodType;
+	}
 
-    public void setPeriodType( String periodType )
-    {
-        this.periodType = periodType;
-    }
+	public void setPeriodType(String periodType) {
+		this.periodType = periodType;
+	}
 
-    public String getReportUuid()
-    {
-        return reportUuid;
-    }
+	public String getReportUuid() {
+		return reportUuid;
+	}
 
-    public void setReportUuid( String reportUuid )
-    {
-        this.reportUuid = reportUuid;
-    }
+	public void setReportUuid(String reportUuid) {
+		this.reportUuid = reportUuid;
+	}
 
-    public List<DataElement> getDataElements() {
-        return dataElements;
-    }
+	public Set<DataElement> getDataElements() {
+		return dataElements;
+	}
 
-    public void setDataElements(List<DataElement> dataElements) {
-        this.dataElements = dataElements;
-    }
+	public void setDataElements(Set<DataElement> dataElements) {
+		this.dataElements = dataElements;
+	}
 }

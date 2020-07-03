@@ -6,8 +6,17 @@
             <generator class="native"/>
         </id>
         <discriminator column="id" insert="false"/>
-        <property column="de_name" name="name" unique="true"/>
+        <property column="name" name="name"/>
         <property column="uid" name="uid" unique="true"/>
-        <property column="code" name="code" unique="true"/>
+        <property column="code" name="code"/>
+        <set name="dataSets" table="${project.parent.artifactId}_dataset_dataelement"
+          lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="dataelement_id" not-null="true"/>
+            </key>
+            <many-to-many class="DataSet">
+                <column name="dataset_id" not-null="true"/>
+            </many-to-many>
+        </set>
     </class>
 </hibernate-mapping>

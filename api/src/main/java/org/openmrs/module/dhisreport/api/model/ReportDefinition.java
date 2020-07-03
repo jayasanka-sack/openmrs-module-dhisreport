@@ -27,9 +27,9 @@ import java.util.Set;
 import javax.xml.bind.annotation.*;
 
 /**
- * 
+ *
  * Based on a dhis2 dataset
- * 
+ *
  * @author bobj
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.*;
 public class ReportDefinition implements Serializable, Identifiable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6618213228326732404L;
 
@@ -111,7 +111,7 @@ public class ReportDefinition implements Serializable, Identifiable {
 	}
 
 	public void addDataValueTemplate(DataValueTemplate dataValueTemplate) {
-		dataValueTemplate.setReportDefinition(this);
+		//		dataValueTemplate.setReportDefinition(this); JJJ
 		dataValueTemplates.add(dataValueTemplate);
 	}
 

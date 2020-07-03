@@ -133,11 +133,12 @@ public class ReportController {
 		ReportDefinition rd = service.getReportDefinition(reportDefinition_id);
 		boolean trigger = false;
 		for (DataValueTemplate dvt : rd.getDataValueTemplates()) {
-			if ((dvt.getQuery() == null || dvt.getQuery().equals("") || dvt
-					.getQuery().equals(" "))
-					&& dvt.getMappeddefinitionlabel() == null) {
-				trigger = true;
-			}
+			//			JJJ
+			//			if ((dvt.getQuery() == null || dvt.getQuery().equals("") || dvt
+			//					.getQuery().equals(" "))
+			//					&& dvt.getMappeddefinitionlabel() == null) {
+			//				trigger = true;
+			//			}
 		}
 		if (trigger) {
 			String msg = "Report contains unmapped definitions";

@@ -142,19 +142,22 @@ public class ReportDefinitionController {
 		DataValueTemplate dvt = service
 				.getDataValueTemplate(dataValueTemplate_id);
 		if (dataValueTemplate_query.trim().equals("")) {
-			dvt.setDefaultreportquery(dvt.getQuery());
-			dvt.setMappeddefinitionlabel(null);
-			dvt.setMappeddefinitionuuid(null);
+			//			JJJ
+			//			dvt.setDefaultreportquery(dvt.getQuery());
+			//			dvt.setMappeddefinitionlabel(null);
+			//			dvt.setMappeddefinitionuuid(null);
 			dataValueTemplate_query = null;
 		}
-		dvt.setQuery(dataValueTemplate_query);
+		//		dvt.setQuery(dataValueTemplate_query); JJJ
 
 		service.saveDataValueTemplate(dvt);
 
 		model.addAttribute("user", Context.getAuthenticatedUser());
 		model.addAttribute("dataValueTemplate", dvt);
-		return "redirect:/module/dhisreport/editReportDefinition.form?reportDefinition_id="
-				+ dvt.getReportDefinition().getId();
+		//		JJJ
+		//		return "redirect:/module/dhisreport/editReportDefinition.form?reportDefinition_id="
+		//				+ dvt.getReportDefinition().getId();
+		return null;
 	}
 
 	@RequestMapping(value = "/module/dhisreport/getReportDefinitions", method = RequestMethod.POST)

@@ -1,4 +1,4 @@
-/**
+/*
  *  Copyright 2012 Society for Health Information Systems Programmes, India (HISP India)
  *
  *  This file is part of DHIS2 Reporting module.
@@ -20,71 +20,19 @@
 package org.openmrs.module.dhisreport.api.model;
 
 import java.io.Serializable;
-import javax.xml.bind.annotation.*;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * 
- * @author bobj
- */
-@XmlType(name = "dataValueTemplate", propOrder = {"dataelement",
-		"disaggregation", "query", "defaultreportquery",
-		"mappeddefinitionlabel", "mappeddefinitionuuid"})
-@XmlRootElement(name = "dataValueTemplate")
+/** @author bobj */
 public class DataValueTemplate implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5401867722816005727L;
+	private Integer id;
+	private String name;
+	private DataSet dataSet;
+	private DataElement dataElement;
+	private String reportDefinitionUuid;
+	private String reportDefinitionLabel;
+	private Set<Disaggregation> disaggregations = new HashSet<Disaggregation>(0);
 
-	// Regex testing for update/delete
-	private static final String SQL_SANITY_CHECK = ".*((?i)update|delete).*";
-
-	protected Integer id;
-
-	protected ReportDefinition reportDefinition;
-
-	protected DataElement dataelement;
-
-	protected Disaggregation disaggregation;
-
-	protected String query;
-
-	protected String default_report_query;
-
-	protected String mapped_definition_label;
-
-	protected String mapped_definition_uuid;
-
-	@XmlTransient
-	public ReportDefinition getReportDefinition() {
-		return reportDefinition;
-	}
-
-	public void setReportDefinition(ReportDefinition reportDefinition) {
-		this.reportDefinition = reportDefinition;
-	}
-
-	@XmlAttribute(name = "dataElement", required = true)
-	@XmlIDREF
-	public DataElement getDataelement() {
-		return dataelement;
-	}
-
-	public void setDataelement(DataElement dataelement) {
-		this.dataelement = dataelement;
-	}
-
-	@XmlAttribute(name = "disaggregation", required = true)
-	@XmlIDREF
-	public Disaggregation getDisaggregation() {
-		return disaggregation;
-	}
-
-	public void setDisaggregation(Disaggregation disaggregation) {
-		this.disaggregation = disaggregation;
-	}
-
-	@XmlTransient
 	public Integer getId() {
 		return id;
 	}
@@ -93,85 +41,51 @@ public class DataValueTemplate implements Serializable {
 		this.id = id;
 	}
 
-	@XmlElement(name = "annotation", required = false)
-	public String getQuery() {
-		return query;
+	public String getName() {
+		return name;
 	}
 
-	public void setQuery(String query) {
-		this.query = query;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	@XmlElement(name = "defaultreportquery", required = false)
-	public String getDefaultreportquery() {
-		return default_report_query;
+	public DataSet getDataSet() {
+		return dataSet;
 	}
 
-	public void setDefaultreportquery(String default_report_query) {
-		this.default_report_query = default_report_query;
+	public void setDataSet(DataSet dataSet) {
+		this.dataSet = dataSet;
 	}
 
-	@XmlElement(name = "mappeddefinitionlabel", required = false)
-	public String getMappeddefinitionlabel() {
-		return mapped_definition_label;
+	public DataElement getDataElement() {
+		return dataElement;
 	}
 
-	public void setMappeddefinitionlabel(String mapped_definition_label) {
-		this.mapped_definition_label = mapped_definition_label;
+	public void setDataElement(DataElement dataElement) {
+		this.dataElement = dataElement;
 	}
 
-	@XmlElement(name = "mappeddefinitionuuid", required = false)
-	public String getMappeddefinitionuuid() {
-		return mapped_definition_uuid;
+	public String getReportDefinitionUuid() {
+		return reportDefinitionUuid;
 	}
 
-	public void setMappeddefinitionuuid(String mapped_definition_uuid) {
-		this.mapped_definition_uuid = mapped_definition_uuid;
+	public void setReportDefinitionUuid(String reportDefinitionUuid) {
+		this.reportDefinitionUuid = reportDefinitionUuid;
 	}
 
-	public boolean potentialUpdateDelete() {
-		return query.matches(SQL_SANITY_CHECK);
+	public String getReportDefinitionLabel() {
+		return reportDefinitionLabel;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final DataValueTemplate other = (DataValueTemplate) obj;
-
-		if (this.dataelement != other.dataelement
-				&& (this.dataelement == null || !this.dataelement
-						.equals(other.dataelement))) {
-			return false;
-		}
-		if (this.disaggregation != other.disaggregation
-				&& (this.disaggregation == null || !this.disaggregation
-						.equals(other.disaggregation))) {
-			return false;
-		}
-		return true;
+	public void setReportDefinitionLabel(String reportDefinitionLabel) {
+		this.reportDefinitionLabel = reportDefinitionLabel;
 	}
 
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		hash = 53 * hash
-				+ (this.dataelement != null ? this.dataelement.hashCode() : 0);
-		hash = 53
-				* hash
-				+ (this.disaggregation != null
-						? this.disaggregation.hashCode()
-						: 0);
-		return hash;
+	public Set<Disaggregation> getDisaggregations() {
+		return disaggregations;
 	}
 
-	@Override
-	public String toString() {
-		return "DVT: " + this.getId() + " : " + this.getDataelement().getName()
-				+ " : " + this.getDisaggregation().getName();
+	public void setDisaggregations(Set<Disaggregation> disaggregations) {
+		this.disaggregations = disaggregations;
 	}
 }

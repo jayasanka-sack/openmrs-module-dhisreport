@@ -30,7 +30,7 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * Tests {@link $ DHIS2ReportingService} .
+ * Tests {@link DHIS2ReportingService} .
  */
 public class DHIS2ReportingServiceDAOTest {
 
@@ -52,8 +52,9 @@ public class DHIS2ReportingServiceDAOTest {
 	@Before
 	public void before() throws Exception {
 		_default = new Disaggregation();
-		_default.setName("default");
-		_default.setCode("default");
+		//		JJJ
+		//		_default.setName("default");
+		//		_default.setCode("default");
 
 		service = Context.getService(DHIS2ReportingService.class);
 		ClassPathResource resource = new ClassPathResource(

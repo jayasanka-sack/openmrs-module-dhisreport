@@ -111,7 +111,8 @@ public class HibernateDHIS2ReportingDAO implements DHIS2ReportingDAO {
 
 	@Override
 	public Disaggregation saveDisaggregation(Disaggregation disagg) {
-		return (Disaggregation) saveObject(disagg);
+		//		return (Disaggregation) saveObject(disagg);
+		return null;
 	}
 
 	@Override
@@ -129,15 +130,17 @@ public class HibernateDHIS2ReportingDAO implements DHIS2ReportingDAO {
 
 	@Override
 	public Collection<DataElement> getAllDataElements() {
-		Query query = getCurrentSession().createQuery(
-				"from DataElement order by name asc");
-		return (List<DataElement>) query.list();
+		//		Query query = getCurrentSession().createQuery(
+		//				"from DataElement order by name asc");
+		//		return (List<DataElement>) query.list();
+		return null;
 	}
 
 	@Override
 	public Collection<Disaggregation> getAllDisaggregations() {
-		Query query = getCurrentSession().createQuery("from Disaggregation");
-		return (List<Disaggregation>) query.list();
+		//		Query query = getCurrentSession().createQuery("from Disaggregation");
+		//		return (List<Disaggregation>) query.list();
+		return null;
 	}
 
 	@Override
@@ -147,9 +150,10 @@ public class HibernateDHIS2ReportingDAO implements DHIS2ReportingDAO {
 
 	@Override
 	public Collection<ReportDefinition> getAllReportDefinitions() {
-		Query query = getCurrentSession().createQuery(
-				"from ReportDefinition order by name asc");
-		return (List<ReportDefinition>) query.list();
+		//		Query query = getCurrentSession().createQuery(
+		//				"from ReportDefinition order by name asc");
+		//		return (List<ReportDefinition>) query.list();
+		return null;
 	}
 
 	@Override
@@ -165,42 +169,43 @@ public class HibernateDHIS2ReportingDAO implements DHIS2ReportingDAO {
 	public String evaluateDataValueTemplate(DataValueTemplate dvt,
 			Period period, Location location, boolean priority)
 			throws DHIS2ReportingException {
-		String queryString = dvt.getQuery();
-		queryString = queryString.replaceAll("\t", " ");
-		queryString = queryString.replaceAll("\n", " ");
-		queryString = queryString.trim();
-		String mappedUuid = dvt.getMappeddefinitionuuid();
-		if (queryString == null || queryString.isEmpty()
-				|| (priority && mappedUuid != null)) {
-			org.openmrs.module.reporting.report.definition.ReportDefinition rrd = Context
-					.getService(ReportDefinitionService.class)
-					.getDefinitionByUuid(dvt.getMappeddefinitionuuid());
-			try {
-				return getReport(rrd, dvt.getMappeddefinitionlabel(), location,
-						period).toString();
-			} catch (EvaluationException ex) {
-				log.debug("Evaluation Exception : " + ex.getMessage());
-			}
-		}
-
-		if (dvt.potentialUpdateDelete()) {
-			throw new DHIS2ReportingException(
-					"Attempt to execute potential update/delete query for "
-							+ dvt.getDataelement().getName() + " : "
-							+ dvt.getDisaggregation().getName());
-		}
-
-		Query query = getCurrentSession().createSQLQuery(queryString);
-
-		List<String> parameters = new ArrayList<String>(Arrays.asList(query
-				.getNamedParameters()));
-		// loactionId is optional
-		if (parameters.contains("locationId")) {
-			query.setParameter("locationId", location.getId().toString());
-		}
-		query.setParameter("startOfPeriod", period.getStartDate());
-		query.setParameter("endOfPeriod", period.getEndDate());
-		return query.uniqueResult().toString();
+		//		String queryString = dvt.getQuery();
+		//		queryString = queryString.replaceAll("\t", " ");
+		//		queryString = queryString.replaceAll("\n", " ");
+		//		queryString = queryString.trim();
+		//		String mappedUuid = dvt.getMappeddefinitionuuid();
+		//		if (queryString == null || queryString.isEmpty()
+		//				|| (priority && mappedUuid != null)) {
+		//			org.openmrs.module.reporting.report.definition.ReportDefinition rrd = Context
+		//					.getService(ReportDefinitionService.class)
+		//					.getDefinitionByUuid(dvt.getMappeddefinitionuuid());
+		//			try {
+		//				return getReport(rrd, dvt.getMappeddefinitionlabel(), location,
+		//						period).toString();
+		//			} catch (EvaluationException ex) {
+		//				log.debug("Evaluation Exception : " + ex.getMessage());
+		//			}
+		//		}
+		//
+		//		if (dvt.potentialUpdateDelete()) {
+		//			throw new DHIS2ReportingException(
+		//					"Attempt to execute potential update/delete query for "
+		//							+ dvt.getDataelement().getName() + " : "
+		//							+ dvt.getDisaggregation().getName());
+		//		}
+		//
+		//		Query query = getCurrentSession().createSQLQuery(queryString);
+		//
+		//		List<String> parameters = new ArrayList<String>(Arrays.asList(query
+		//				.getNamedParameters()));
+		//		// loactionId is optional
+		//		if (parameters.contains("locationId")) {
+		//			query.setParameter("locationId", location.getId().toString());
+		//		}
+		//		query.setParameter("startOfPeriod", period.getStartDate());
+		//		query.setParameter("endOfPeriod", period.getEndDate());
+		//		return query.uniqueResult().toString();
+		return null;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------
@@ -312,30 +317,32 @@ public class HibernateDHIS2ReportingDAO implements DHIS2ReportingDAO {
 	@Override
 	public DataValueTemplate saveDataValueTemplateTest(DataValueTemplate dvt) {
 
-		ReportDefinition rd = getReportDefinitionByUid(dvt
-				.getReportDefinition().getUid());
-		DataElement de = getDataElementByUid(dvt.getDataelement().getUid());
-		Disaggregation dis = getDisaggregationByUid(dvt.getDisaggregation()
-				.getUid());
-		dvt.setDataelement(de);
-		dvt.setDisaggregation(dis);
-		dvt.setReportDefinition(rd);
+		//		ReportDefinition rd = getReportDefinitionByUid(dvt
+		//				.getReportDefinition().getUid());
+		//		DataElement de = getDataElementByUid(dvt.getDataelement().getUid());
+		//		Disaggregation dis = getDisaggregationByUid(dvt.getDisaggregation()
+		//				.getUid());
+		//		dvt.setDataelement(de);
+		//		dvt.setDisaggregation(dis);
+		//		dvt.setReportDefinition(rd);
+		//
+		//		Criteria criteria = getCurrentSession().createCriteria(
+		//				DataValueTemplate.class);
+		//		criteria.add(Restrictions.eq("reportDefinition", rd)).add(
+		//				Restrictions.eq("dataelement", de)).add(
+		//				Restrictions.eq("disaggregation", dis));
+		//
+		//		DataValueTemplate dvt_db = (DataValueTemplate) criteria.uniqueResult();
+		//
+		//		if (dvt_db == null) {
+		//			getCurrentSession().save(dvt);
+		//			return dvt;
+		//		} else {
+		//			getCurrentSession().saveOrUpdate(dvt);
+		//			return dvt_db;
+		//		}
 
-		Criteria criteria = getCurrentSession().createCriteria(
-				DataValueTemplate.class);
-		criteria.add(Restrictions.eq("reportDefinition", rd)).add(
-				Restrictions.eq("dataelement", de)).add(
-				Restrictions.eq("disaggregation", dis));
-
-		DataValueTemplate dvt_db = (DataValueTemplate) criteria.uniqueResult();
-
-		if (dvt_db == null) {
-			getCurrentSession().save(dvt);
-			return dvt;
-		} else {
-			getCurrentSession().saveOrUpdate(dvt);
-			return dvt_db;
-		}
+		return null;
 
 	}
 
@@ -358,7 +365,7 @@ public class HibernateDHIS2ReportingDAO implements DHIS2ReportingDAO {
 
 	/**
 	 * Gets the current hibernate session while taking care of the hibernate 3 and 4 differences.
-	 * 
+	 *
 	 * @return the current hibernate session.
 	 */
 	private org.hibernate.Session getCurrentSession() {

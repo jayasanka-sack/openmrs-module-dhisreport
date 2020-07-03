@@ -111,10 +111,11 @@ public class MapReportsController {
 					.getIndicatorDataSetDefinition();
 
 			if (reportIndex == 0) {
-				selected.setQuery(selected.getDefaultreportquery());
-				selected.setDefaultreportquery(null);
-				selected.setMappeddefinitionlabel(null);
-				selected.setMappeddefinitionuuid(null);
+				//				JJJ
+				//				selected.setQuery(selected.getDefaultreportquery());
+				//				selected.setDefaultreportquery(null);
+				//				selected.setMappeddefinitionlabel(null);
+				//				selected.setMappeddefinitionuuid(null);
 				service.saveDataValueTemplate(selected);
 			} else if (cidsd.getColumns().get(reportIndex - 1).getIndicator()
 					.getParameterizable().getCohortDefinition()
@@ -124,25 +125,26 @@ public class MapReportsController {
 						.getColumns().get(reportIndex - 1).getIndicator()
 						.getParameterizable().getCohortDefinition()
 						.getParameterizable();
-
-				if (selected.getDefaultreportquery() == null) {
-					selected.setDefaultreportquery(selected.getQuery());
-				}
-				selected.setQuery(scd.getQuery());
-				selected.setMappeddefinitionlabel(scd.getName());
-				selected.setMappeddefinitionuuid(rrd.getUuid());
+				//				JJJ
+				//				if (selected.getDefaultreportquery() == null) {
+				//					selected.setDefaultreportquery(selected.getQuery());
+				//				}
+				//				selected.setQuery(scd.getQuery());
+				//				selected.setMappeddefinitionlabel(scd.getName());
+				//				selected.setMappeddefinitionuuid(rrd.getUuid());
 
 				service.saveDataValueTemplate(selected);
 			} else {
 				CohortDefinition cd = cidsd.getColumns().get(reportIndex - 1)
 						.getIndicator().getParameterizable()
 						.getCohortDefinition().getParameterizable();
-				if (selected.getDefaultreportquery() == null) {
-					selected.setDefaultreportquery(selected.getQuery());
-				}
-				selected.setMappeddefinitionlabel(cd.getName());
-				selected.setQuery(" ");
-				selected.setMappeddefinitionuuid(rrd.getUuid());
+				//				JJJ
+				//				if (selected.getDefaultreportquery() == null) {
+				//					selected.setDefaultreportquery(selected.getQuery());
+				//				}
+				//				selected.setMappeddefinitionlabel(cd.getName());
+				//				selected.setQuery(" ");
+				//				selected.setMappeddefinitionuuid(rrd.getUuid());
 
 				service.saveDataValueTemplate(selected);
 			}

@@ -227,8 +227,8 @@ public class DHIS2ReportingServiceImpl extends BaseOpenmrsService
 
 		for (DataValueTemplate dvt : templates) {
 			DataValue dataValue = new DataValue();
-			dataValue.setDataElement(dvt.getDataelement().getCode());
-			dataValue.setCategoryOptionCombo(dvt.getDisaggregation().getCode());
+			dataValue.setDataElement(dvt.getDataElement().getCode());
+			//			dataValue.setCategoryOptionCombo(dvt.getDisaggregation().getCode()); JJJ
 
 			try {
 				String value = dao.evaluateDataValueTemplate(dvt, period,
@@ -320,8 +320,8 @@ public class DHIS2ReportingServiceImpl extends BaseOpenmrsService
 		int count = 0;
 		for (DataValueTemplate dvt : templates) {
 			DataValue dataValue = new DataValue();
-			dataValue.setDataElement(dvt.getDataelement().getCode());
-			dataValue.setCategoryOptionCombo(dvt.getDisaggregation().getCode());
+			dataValue.setDataElement(dvt.getDataElement().getCode());
+			//			dataValue.setCategoryOptionCombo(dvt.getDisaggregation().getCode()); JJ
 			dataValue.setValue(dsrlist.get(count).toString());
 			dataValues.add(dataValue);
 			count++;
@@ -369,7 +369,7 @@ public class DHIS2ReportingServiceImpl extends BaseOpenmrsService
 			//            System.out.println( rd.getName() );
 			for (DataValueTemplate dvt : rd.getDataValueTemplates()) {
 				//                System.out.println( "davt--------------------------" );
-				dvt.setReportDefinition(rd);
+				//				dvt.setReportDefinition(rd); JJJ
 
 				//                saveDataValueTemplate( dvt );
 				//                System.out.println( dvt.getId() );

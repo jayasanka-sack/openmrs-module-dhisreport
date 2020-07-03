@@ -6,8 +6,7 @@
             <generator class="native"/>
         </id>
         <discriminator column="id" insert="false"/>
-        <property column="disagg_name" name="name" unique="true"/>
-        <property column="uid" name="uid" unique="true"/>
-        <property column="code" name="code" unique="true"/>
+        <many-to-one name="category" column="category_id" not-null="true"/>
+        <many-to-one name="categoryOption" column="category_option_id" not-null="true"/>
     </class>
 </hibernate-mapping>

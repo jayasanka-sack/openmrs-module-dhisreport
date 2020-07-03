@@ -120,90 +120,90 @@ public class ReportSynchronizer {
 	private void updateReferences(SyncDataElement de,
 			List<SyncDataSet> datasets,
 			List<SyncCategoryOptionCombo> disaggregations) {
-
-		DHIS2ReportingService service = Context
-				.getService(DHIS2ReportingService.class);
-
-		DataElement jaxde = new DataElement();
-
-		jaxde.setCode(de.getCode());
-		jaxde.setName(de.getName());
-		jaxde.setUid(de.getId());
-
-		List<DataElement> rtde = new ArrayList<DataElement>();
-		rtde.add(jaxde);
-		List<Disaggregation> rtdisag;
-		List<ReportDefinition> rtrepdef = null;
-		// System.out.println( "enteretd update refenrces" );
-		if (service.getDataElementByUid(jaxde.getUid()) == null) {
-			service.saveDataElement(jaxde);
-			//    System.out.println( "saved data elemnt -" + jaxde.getName() );
-		}
-
-		for (SyncCategoryOptionCombo sdisag : disaggregations) {
-			//     System.out.println( "saving category option combo-" + sdisag );
-			Disaggregation disag = new Disaggregation();
-			disag.setCode(sdisag.getCode());
-			disag.setName(sdisag.getName());
-			disag.setUid(sdisag.getId());
-
-			rtdisag = new ArrayList<Disaggregation>();
-			rtdisag.add(disag);
-			service.saveDisaggregation(disag);
-			//   System.out.println( "saved disaagregation-" + disag.getName() );
-			// JAXBContext jaxbContextDisag =
-			// JAXBContext.newInstance(Disaggregation.class);
-			// Marshaller jaxbDisagMarshaller =
-			// jaxbContextDisag.createMarshaller();
-			// jaxbDisagMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
-			// true);
-			// jaxbDisagMarshaller.marshal(disag, System.out);
-			DataValueTemplate dvt = null;
-			//            dvt.setDataelement( jaxde );
-			//            dvt.setDisaggregation( disag );
-			//            System.out.println( "set dvt -" + dvt.toString() );
-			//            Set<DataValueTemplate> dvts = new HashSet<DataValueTemplate>();
-			//            dvts.add( dvt );
-
-			// System.out.println( "hello6" );
-			for (SyncDataSet syds : datasets) {
-				//      System.out.println( "saving data sets" );
-				ReportDefinition ds = new ReportDefinition();
-				ds.setCode(syds.getCode());
-				ds.setName(syds.getName());
-				ds.setUid(syds.getId());
-				ds.setPeriodType(syds.getPeriodType());
-				//      System.out.println( "data set Period TYpe:--" + syds.getPeriodType() );
-				service.saveReportDefinition(ds);
-
-				dvt = new DataValueTemplate();
-				dvt.setDataelement(jaxde);
-				dvt.setDisaggregation(disag);
-				dvt.setReportDefinition(ds);
-
-				// dvt.setId( 4300 );
-
-				//                ds.addDataValueTemplate( dvt );
-				//                ds.setDataValueTemplates( dvts );
-				// System.out.println( "hello8" );
-				//     System.out.println( "saved data set-" + ds.getName() );
-				service.saveDataValueTemplateTest(dvt);
-				ds.addDataValueTemplate(dvt);
-				rtrepdef = new ArrayList<ReportDefinition>();
-				rtrepdef.add(ds);
-				//     System.out.println( "creatting report defintion array.. just added" + ds.getName() );
-
-			}
-			//            service.saveDataValueTemplateTest( dvt );
-			// ReportTemplates rt = new ReportTemplates();
-			// rt.setDataElements( rtde );
-			// rt.setDisaggregations( rtdisag );
-			// rt.setReportDefinitions( rtrepdef );
-			// service.saveReportTemplates( rt );
-			// System.out.println( "saving report template" + rt.toString() );
-		}// disag for
-
-		// System.out.println( "exiting update refernces function" );
+		//
+		//		DHIS2ReportingService service = Context
+		//				.getService(DHIS2ReportingService.class);
+		//
+		//		DataElement jaxde = new DataElement();
+		//
+		//		jaxde.setCode(de.getCode());
+		//		jaxde.setName(de.getName());
+		//		jaxde.setUid(de.getId());
+		//
+		//		List<DataElement> rtde = new ArrayList<DataElement>();
+		//		rtde.add(jaxde);
+		//		List<Disaggregation> rtdisag;
+		//		List<ReportDefinition> rtrepdef = null;
+		//		// System.out.println( "enteretd update refenrces" );
+		//		if (service.getDataElementByUid(jaxde.getUid()) == null) {
+		//			service.saveDataElement(jaxde);
+		//			//    System.out.println( "saved data elemnt -" + jaxde.getName() );
+		//		}
+		//
+		//		for (SyncCategoryOptionCombo sdisag : disaggregations) {
+		//			//     System.out.println( "saving category option combo-" + sdisag );
+		//			Disaggregation disag = new Disaggregation();
+		//			disag.setCode(sdisag.getCode());
+		//			disag.setName(sdisag.getName());
+		//			disag.setUid(sdisag.getId());
+		//
+		//			rtdisag = new ArrayList<Disaggregation>();
+		//			rtdisag.add(disag);
+		//			service.saveDisaggregation(disag);
+		//			//   System.out.println( "saved disaagregation-" + disag.getName() );
+		//			// JAXBContext jaxbContextDisag =
+		//			// JAXBContext.newInstance(Disaggregation.class);
+		//			// Marshaller jaxbDisagMarshaller =
+		//			// jaxbContextDisag.createMarshaller();
+		//			// jaxbDisagMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
+		//			// true);
+		//			// jaxbDisagMarshaller.marshal(disag, System.out);
+		//			DataValueTemplate dvt = null;
+		//			//            dvt.setDataelement( jaxde );
+		//			//            dvt.setDisaggregation( disag );
+		//			//            System.out.println( "set dvt -" + dvt.toString() );
+		//			//            Set<DataValueTemplate> dvts = new HashSet<DataValueTemplate>();
+		//			//            dvts.add( dvt );
+		//
+		//			// System.out.println( "hello6" );
+		//			for (SyncDataSet syds : datasets) {
+		//				//      System.out.println( "saving data sets" );
+		//				ReportDefinition ds = new ReportDefinition();
+		//				ds.setCode(syds.getCode());
+		//				ds.setName(syds.getName());
+		//				ds.setUid(syds.getId());
+		//				ds.setPeriodType(syds.getPeriodType());
+		//				//      System.out.println( "data set Period TYpe:--" + syds.getPeriodType() );
+		//				service.saveReportDefinition(ds);
+		//
+		//				dvt = new DataValueTemplate();
+		//				dvt.setDataelement(jaxde);
+		//				dvt.setDisaggregation(disag);
+		//				dvt.setReportDefinition(ds);
+		//
+		//				// dvt.setId( 4300 );
+		//
+		//				//                ds.addDataValueTemplate( dvt );
+		//				//                ds.setDataValueTemplates( dvts );
+		//				// System.out.println( "hello8" );
+		//				//     System.out.println( "saved data set-" + ds.getName() );
+		//				service.saveDataValueTemplateTest(dvt);
+		//				ds.addDataValueTemplate(dvt);
+		//				rtrepdef = new ArrayList<ReportDefinition>();
+		//				rtrepdef.add(ds);
+		//				//     System.out.println( "creatting report defintion array.. just added" + ds.getName() );
+		//
+		//			}
+		//			//            service.saveDataValueTemplateTest( dvt );
+		//			// ReportTemplates rt = new ReportTemplates();
+		//			// rt.setDataElements( rtde );
+		//			// rt.setDisaggregations( rtdisag );
+		//			// rt.setReportDefinitions( rtrepdef );
+		//			// service.saveReportTemplates( rt );
+		//			// System.out.println( "saving report template" + rt.toString() );
+		//		}// disag for
+		//
+		//		// System.out.println( "exiting update refernces function" );
 	}
 
 	public String fetchURL(String webPage) {
