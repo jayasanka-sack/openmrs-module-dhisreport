@@ -3,21 +3,36 @@ package org.openmrs.module.dhisreport.api.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlRootElement(name = "dataSet")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataSet implements Serializable, Identifiable {
 
+	@XmlTransient
 	private Integer id;
 
+	@XmlAttribute(name = "id")
 	private String uid;
 
+	@XmlAttribute
 	private String code;
 
+	@XmlAttribute
 	private String name;
 
+	@XmlElement(name = "periodType", required = true)
 	private String periodType;
 
+	@XmlTransient
 	private String reportUuid;
 
+	@XmlTransient
 	private Set<DataElement> dataElements = new HashSet<DataElement>(0);
 
 	@Override
